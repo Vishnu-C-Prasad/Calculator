@@ -12,7 +12,22 @@ $(document).ready(function() {
     hasEvaluated = false;
   }
 
+  //PLUS MINUS
+  $("#plus_minus").click(function() {
+    if (eval(displayBox.innerHTML) > 0) {
+      displayBox.innerHTML = "-" + displayBox.innerHTML;
+    } else {
+      displayBox.innerHTML = displayBox.innerHTML.replace("-", "");
+    }
+  });
+
   //ON CLICK ON NUMBERS
+  $("#btn-clear").click(function() {
+    displayBox.innerHTML = "0";
+    $("#display").css("font-size", "60px");
+    // $("#display").css("margin-top", "110px");
+    $("button").prop("disabled", false);
+  });
   $("#one").click(function() {
     checkLength(displayBox.innerHTML);
     clickNumbers(1);
@@ -53,7 +68,36 @@ $(document).ready(function() {
     checkLength(displayBox.innerHTML);
     clickNumbers(0);
   });
+  $("#decimal").click(function() {
+    if (displayBox.innerHTML.indexOf(".") === -1 ||
+      (displayBox.innerHTML.indexOf(".") !== -1 && displayBox.innerHTML.indexOf("+") !== -1) ||
+      (displayBox.innerHTML.indexOf(".") !== -1 && displayBox.innerHTML.indexOf("-") !== -1) ||
+      (displayBox.innerHTML.indexOf(".") !== -1 && displayBox.innerHTML.indexOf("×") !== -1) ||
+      (displayBox.innerHTML.indexOf(".") !== -1 && displayBox.innerHTML.indexOf("÷") !== -1)) {
+      clickNumbers(".");
+    }
+  });
   
+  //EVAL FUNCTION
+  function evaluate() {
+    displayBox.innerHTML = displayBox.innerHTML.replace(",", "");
+    displayBox.innerHTML = displayBox.innerHTML.replace("×", "*");
+    displayBox.innerHTML = displayBox.innerHTML.replace("÷", "/");
+    if (displayBox.innerHTML.indexOf("/0") !== -1) {
+      $("#display").css("font-size", "60px");
+      // $("#display").css("margin-top", "124px");
+      $("button").prop("disabled", false);
+      $(".btn-clear").attr("disabled", false);
+      displayBox.innerHTML = "Undefined";
+    }
+    var evaluate = eval(displayBox.innerHTML);
+    if (evaluate.toString().indexOf(".") !== -1) {
+      evaluate = evaluate.toFixed(5);
+    }
+    checkLength(evaluate);
+    displayBox.innerHTML = evaluate;
+  }
+
   //CHECK FOR LENGTH & DISABLING BUTTONS
   function checkLength(num) {
     if (num.toString().length > 7 && num.toString().length < 14) {
