@@ -22,6 +22,12 @@ $(document).ready(function() {
   });
 
   //ON CLICK ON NUMBERS
+  $("#btn-clear").click(function() {
+    displayBox.innerHTML = "0";
+    $("#display").css("font-size", "60px");
+    // $("#display").css("margin-top", "110px");
+    $("button").prop("disabled", false);
+  });
   $("#one").click(function() {
     checkLength(displayBox.innerHTML);
     clickNumbers(1);
@@ -71,6 +77,26 @@ $(document).ready(function() {
       clickNumbers(".");
     }
   });
+  
+  //EVAL FUNCTION
+  function evaluate() {
+    displayBox.innerHTML = displayBox.innerHTML.replace(",", "");
+    displayBox.innerHTML = displayBox.innerHTML.replace("×", "*");
+    displayBox.innerHTML = displayBox.innerHTML.replace("÷", "/");
+    if (displayBox.innerHTML.indexOf("/0") !== -1) {
+      $("#display").css("font-size", "60px");
+      // $("#display").css("margin-top", "124px");
+      $("button").prop("disabled", false);
+      $(".btn-clear").attr("disabled", false);
+      displayBox.innerHTML = "Undefined";
+    }
+    var evaluate = eval(displayBox.innerHTML);
+    if (evaluate.toString().indexOf(".") !== -1) {
+      evaluate = evaluate.toFixed(5);
+    }
+    checkLength(evaluate);
+    displayBox.innerHTML = evaluate;
+  }
 
   //CHECK FOR LENGTH & DISABLING BUTTONS
   function checkLength(num) {
