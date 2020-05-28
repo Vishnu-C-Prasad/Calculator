@@ -12,6 +12,15 @@ $(document).ready(function() {
     hasEvaluated = false;
   }
 
+  //PLUS MINUS
+  $("#plus_minus").click(function() {
+    if (eval(displayBox.innerHTML) > 0) {
+      displayBox.innerHTML = "-" + displayBox.innerHTML;
+    } else {
+      displayBox.innerHTML = displayBox.innerHTML.replace("-", "");
+    }
+  });
+
   //ON CLICK ON NUMBERS
   $("#one").click(function() {
     checkLength(displayBox.innerHTML);
@@ -53,7 +62,16 @@ $(document).ready(function() {
     checkLength(displayBox.innerHTML);
     clickNumbers(0);
   });
-  
+  $("#decimal").click(function() {
+    if (displayBox.innerHTML.indexOf(".") === -1 ||
+      (displayBox.innerHTML.indexOf(".") !== -1 && displayBox.innerHTML.indexOf("+") !== -1) ||
+      (displayBox.innerHTML.indexOf(".") !== -1 && displayBox.innerHTML.indexOf("-") !== -1) ||
+      (displayBox.innerHTML.indexOf(".") !== -1 && displayBox.innerHTML.indexOf("×") !== -1) ||
+      (displayBox.innerHTML.indexOf(".") !== -1 && displayBox.innerHTML.indexOf("÷") !== -1)) {
+      clickNumbers(".");
+    }
+  });
+
   //CHECK FOR LENGTH & DISABLING BUTTONS
   function checkLength(num) {
     if (num.toString().length > 7 && num.toString().length < 14) {
