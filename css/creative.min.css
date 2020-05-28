@@ -19,10 +19,14 @@ a {
 }
 
 .calculator {
+    padding: 0.5em;
+    border: solid 5px #E8E8E8;
+    border-radius: 1em;
     background: #68bdf3;
 }
 
 .displayBox {
+    margin-bottom: 0.5em;
     background: #292929;
     overflow: hidden
 }
@@ -77,7 +81,7 @@ a {
 
 .btn-operation {
     background: 0 0;
-    color: #999;
+    color: ##455A64;
     width: 100%;
     height: 80px;
     border-radius: 0

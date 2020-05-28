@@ -250,7 +250,7 @@ h1 {
     text-align: center;
 }
 
-input#basicCalculator {
+  input#basicCalculator {
     padding: 14px;
     width: 90%;
     box-sizing: border-box;
