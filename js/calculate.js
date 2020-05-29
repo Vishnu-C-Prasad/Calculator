@@ -103,6 +103,17 @@ $(document).ready(function() {
   	evaluate();
   	hasEvaluated = true;
   });
+  $("#square").click(function() {
+    var num = Number(displayBox.innerHTML);
+    num = num * num;
+    checkLength(num);
+    displayBox.innerHTML = num;
+  });
+  $("#sqrt").click(function() {
+    var num = parseFloat(displayBox.innerHTML);
+    num = Math.sqrt(num);
+    displayBox.innerHTML = Number(num.toFixed(5));
+  });
   
   //EVAL FUNCTION
   function evaluate() {
