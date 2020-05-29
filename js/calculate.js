@@ -137,13 +137,14 @@ $(document).ready(function() {
 
   //CHECK FOR LENGTH & DISABLING BUTTONS
   function checkLength(num) {
-    if (num.toString().length > 7 && num.toString().length < 14) {
+    if (num.toString().length > 7 && num.toString().length < 9) {
       $("#display").css("font-size", "60px");
       // $("#display").css("margin-top", "174px");
-    } else if (num.toString().length > 16) {
+    } else if (num.toString().length > 9) {
       num = "Infinity";
       $("button").prop("disabled", true);
       $(".btn-clear").attr("disabled", false);
     }
   }
+  
 });
