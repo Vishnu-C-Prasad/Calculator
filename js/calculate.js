@@ -99,6 +99,10 @@ $(document).ready(function() {
     checkLength(displayBox.innerHTML);
     displayBox.innerHTML += "÷";
   });
+  $('#equals').click(function() {
+  	evaluate();
+  	hasEvaluated = true;
+  });
   
   //EVAL FUNCTION
   function evaluate() {
